@@ -3,8 +3,6 @@ package com.xizz.viewpager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.xizz.viewpager.databinding.ActivityMainBinding
@@ -28,13 +26,6 @@ class MainActivity : AppCompatActivity() {
         mediator = TabLayoutMediator(tabs, viewPager) { tab, position ->
             tab.text = adapter.getPageTitle(position)
         }.apply { attach() }
-
-        val fab: FloatingActionButton = binding.fab
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
     }
 
     override fun onDestroy() {

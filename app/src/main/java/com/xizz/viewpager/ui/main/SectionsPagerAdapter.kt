@@ -14,8 +14,11 @@ class SectionsPagerAdapter(private val activity: FragmentActivity) : FragmentSta
 
     override fun getItemCount(): Int = 2
 
-    override fun createFragment(position: Int): Fragment {
-        return PlaceholderFragment.newInstance(position + 1)
+    override fun createFragment(position: Int): Fragment = when (position) {
+        0 ->
+            NestedScrollingFragment.newInstance()
+        else ->
+            PlaceholderFragment.newInstance(position + 1)
     }
 
     fun getPageTitle(position: Int): CharSequence {

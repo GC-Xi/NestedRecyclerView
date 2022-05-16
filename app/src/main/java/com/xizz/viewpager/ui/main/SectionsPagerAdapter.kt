@@ -1,9 +1,8 @@
 package com.xizz.viewpager.ui.main
 
-import android.content.Context
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.xizz.viewpager.R
 
 private val TAB_TITLES = arrayOf(
@@ -11,24 +10,15 @@ private val TAB_TITLES = arrayOf(
     R.string.tab_text_2
 )
 
-/**
- * A [FragmentPagerAdapter] that returns a fragment corresponding to
- * one of the sections/tabs/pages.
- */
-class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class SectionsPagerAdapter(private val activity: FragmentActivity) : FragmentStateAdapter(activity) {
 
-    override fun getItem(position: Int): Fragment {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
+    override fun getItemCount(): Int = 2
+
+    override fun createFragment(position: Int): Fragment {
         return PlaceholderFragment.newInstance(position + 1)
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
-        return context.resources.getString(TAB_TITLES[position])
-    }
-
-    override fun getCount(): Int {
-        // Show 2 total pages.
-        return 2
+    fun getPageTitle(position: Int): CharSequence {
+        return activity.resources.getString(TAB_TITLES[position])
     }
 }
